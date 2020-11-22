@@ -1,0 +1,38 @@
+<h3> {{titre}}</h3>
+<div *ngIf="products">
+<div *ngFor= "let p of products._embedded.products">
+    <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">{{p.name}}</div>
+      <div class="panel-body">
+         
+     <table>
+       <tr>
+           <td rowspan="3"> 
+            <img src="{{this.catalogue.host+'/photoProduct/'+p.id}}"/>
+            <p>
+              <button (click)="onEditPhoto(p)">
+               <span class="glyphicon glyphicon-edit "></span>
+              </button>
+            </p>
+            <p *ngIf="editPhoto==true && currentProduct==p">
+                <input type="file" (change)="onSelectedFile($event)"><p></p>
+                <button class="btn btn-success" (click)="upload()">Upload</button>
+                {{progress}}
+            </p>
+           </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>{{p.description}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>{{p.currentPrice|number: '0.2'}}</td>
+            </tr>
+     </table>
+      </div>
+    </div>
+</div>
+</div>
+</div>
